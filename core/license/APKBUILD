@@ -1,0 +1,30 @@
+# Contributor: Christine Dodrill <me@christine.website>
+# Maintainer: ""
+pkgname=license
+pkgver=0.0.1
+pkgrel=0
+pkgdesc="Simple LICENSE file generator"
+url="https://github.com/Xe/tools"
+arch="all"
+license="MIT"
+depends=""
+makedepends="go"
+install=""
+subpackages=""
+source=""
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+
+	export GOPATH="$builddir"
+	go get github.com/Xe/tools/license
+	go build github.com/Xe/tools/license
+}
+
+package() {
+	cd "$builddir"
+
+	install -D -m 755 "$builddir"/$pkgname "$pkgdir"/usr/bin/$pkgname
+}
+

@@ -1,0 +1,27 @@
+# Maintainer: Christine Dodrill <me@christine.website>
+pkgname=xeserv-keys
+pkgver=1.3
+pkgrel=0
+pkgdesc="Public keys for XeServ packages"
+url="https://xena.greedo.xeserv.us/contact.md"
+arch="noarch"
+license="MIT"
+depends=""
+makedepends="ca-certificates"
+install=""
+subpackages=""
+source="https://xena.greedo.xeserv.us/pkg/me@christine.website-58b7b0b8.rsa.pub
+	"
+
+build() {
+	return 0
+}
+
+package() {
+	# copy keys for repos
+	mkdir -p "$pkgdir"/etc/apk/keys
+	install -m644 "$srcdir"/*christine*.pub \
+		"$pkgdir"/etc/apk/keys/ || return 1
+}
+
+sha512sums="00284b8d8d3a25bf222f44486cb0acc7401149e9cc854aced5fbec2daf042c00aa76410176681b694194f2b05cc59366408ebae7d0480ae989a1b7868378ee41  me@christine.website-58b7b0b8.rsa.pub"
