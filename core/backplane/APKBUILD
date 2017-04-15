@@ -2,7 +2,7 @@
 # Maintainer: ""
 pkgname=backplane
 pkgver=1.4.0
-pkgrel=2
+pkgrel=3
 pkgdesc="HTTP routing mesh agent"
 url="https://www.backplane.io"
 arch="x86_64"
@@ -26,7 +26,7 @@ package() {
 runit() {
 	cd "$_builddir"
 	pkgdesc="$pkgname runit bindings"
-	depends="runit"
+	depends="$pkgname runit"
 	source="run"
 
 	install -D -m 755 "$srcdir"/run "$subpkgdir"/etc/system/$pkgname/run 
