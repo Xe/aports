@@ -1,0 +1,57 @@
+# Contributor: Christine Dodrill <me@christine.website>
+# Maintainer: Christine Dodrill <me@christine.website>
+pkgname=route-mesh
+pkgver=0.0.1
+pkgrel=0
+pkgdesc="HTTP routing mesh"
+url="https://info.route.xeserv.us"
+arch="x86_64"
+license="MIT"
+depends=""
+makedepends=""
+install=""
+subpackages="$pkgname-runit:runit $pkgname-server:routed $pkgname-agent:agent $pkgname-plugins:plugins"
+source="run https://xena.greedo.xeserv.us/pkg/bin/route-musl-c434bafce5de58a4e9c202b6ace8bc3ebbd56313.tgz"
+builddir="$srcdir/"
+_builddir="$srcdir/"
+
+build() {
+	echo "nothing to do"
+}
+
+package() {
+	install -D -m 755 "$srcdir"/bin/route "$pkgdir"/usr/bin/$pkgname
+}
+
+routed() {
+	cd "$_builddir"
+	pkgdesc="$pkgname daemon"
+	depends=""               
+
+	install -D -m 755 "$srcdir"/bin/routed "$subpkgdir"/usr/bin/routed
+}
+
+agent() {
+	cd "$_builddir"
+	pkgdesc="$pkgname agent"
+
+	install -D -m 755 "$srcdir"/bin/route-httpagent "$subpkgdir"/usr/bin/route-httpagent
+}
+
+plugins() {
+	cd "$_builddir"
+	pkgdesc="$pkgname Go plugins"
+	install -D -m 755 "$srcdir"/plugins/autohttpagent.so "$subpkgdir"/usr/share/route/plugins/autohttpagent.so
+}
+
+runit() {
+	cd "$_builddir"
+	pkgdesc="$pkgname agent runit bindings"
+	depends="$pkgname-agent runit"
+	source="run"
+
+	install -D -m 755 "$srcdir"/run "$subpkgdir"/etc/system/$pkgname/run 
+}
+
+sha512sums="fabce2527312bd679e45cd23029b750d26d33adc32a9635b262d443f4ac5bcec40c3694efdba1c70fc1d38e1dc7001cb4ab3c2f39c73adfde0fe53ca20320fda  run
+7d6c32ca8a9c3e8a6fc2c40da53e9bb27dbc095b78b6fd766a79ebfd2ef5ca7362713a162b87e30eab84840c82bb085d37dc6f8600034189eb039e71d021c538  route-musl-c434bafce5de58a4e9c202b6ace8bc3ebbd56313.tgz"
