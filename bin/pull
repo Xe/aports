@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rsync -avz greedo.xeserv.us:public_html/pkg/alpine/edge/core/x86_64/ ~/packages/core/x86_64
