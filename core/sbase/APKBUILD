@@ -1,0 +1,26 @@
+# Contributor:
+# Maintainer:
+pkgname=sbase
+pkgver=0
+pkgrel=0
+pkgdesc="suckless unix tools"
+url="http://core.suckless.org/sbase"
+arch="all"
+license="mit"
+depends=""
+makedepends="build-base git"
+install=""
+source=""
+builddir="$srcdir/"
+
+build() {
+	git clone http://git.suckless.org/sbase/ $builddir
+	cd $builddir
+	make
+}
+
+package() {
+	cd "$builddir"
+	make DESTDIR="$pkgdir" PREFIX=/usr/sbase install
+}
+
