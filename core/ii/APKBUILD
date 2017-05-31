@@ -1,0 +1,50 @@
+# Contributor: Christine Dodrill <me@christine.website>
+# Maintainer: Christine Dodrill <me@christine.website>
+pkgname=ii
+pkgver=1.7
+pkgrel=1
+pkgdesc="A minimalist FIFO-based IRC client"
+url="http://tools.suckless.org/ii/"
+arch="all"
+license="MIT"
+depends=""
+depends_dev=""
+makedepends="$depends_dev"
+install=""
+subpackages="$pkgname-doc"
+source="
+	http://dl.suckless.org/tools/$pkgname-$pkgver.tar.gz
+	http://tools.suckless.org/ii/patches/ii-1.4-exec.diff
+	http://tools.suckless.org/ii/patches/ii-1.4-autojoin.diff
+	http://tools.suckless.org/ii/patches/ii-1.4-ctcp_action.diff
+	http://tools.suckless.org/ii/patches/ii-ipv6.diff
+	http://tools.suckless.org/ii/patches/ii-1.4-usernames.diff
+"
+
+_builddir="$srcdir/$pkgname-$pkgver"
+prepare() {
+	local i
+	cd "$_builddir"
+	for i in $source; do
+		case $i in
+		*.patch) msg $i; patch -p1 -i "$srcdir"/$i || return 1;;
+		esac
+	done
+}
+
+build() {
+	cd "$_builddir"
+	make PREFIX=/usr || return 1
+}
+
+package() {
+	cd "$_builddir"
+	make PREFIX=/usr DESTDIR="$pkgdir" install || return 1
+}
+
+sha512sums="1fa744bc9b4291b5c6c56e023d982aad59001137db6c7682284a2d63e649a32d558adbb85ae3407e312ae5436852b4278c2c522d4ef03f47cf54ea3a1f13ca90  ii-1.7.tar.gz
+284e6473b6f89bbc8b08b9f23c27ec47845448bd6658e7a8d408f5fa854de3bdd43ca80acb1fb4933f83390ec1da5b1a8debcd9e7be84615c15012a6f7fd7958  ii-1.4-exec.diff
+e48aeab62bf75564ae238eadeac56c669f635bb0c1785c44187499e30cc84acc987e280c56aa1df5dbb41c9223cf3470ad4ab9b2dc2b6d2a5791d7c567f0059e  ii-1.4-autojoin.diff
+e9920c3e06eaaa91f97e1df14395249aef40c736a7acc272c69ab468d5575c6718993ec4d157b3733033e2689c044167b0a53a04b8125981170152e67b6729aa  ii-1.4-ctcp_action.diff
+d147bc26ef18740ffa82604f8931f95083f9f6f35911ebfd460dc4642b202cca3c81094f559e6ce5b1c1c9d2309474ffc16b153312f7b555c2c9946583110a42  ii-ipv6.diff
+6650d79985206d8df5e7af612e7a3ed68cf4d2930d9328159ae5e724c379ad99a2cfa39fc4874b4b855e76e85f5550a956aba54a45b073e382eac1d28fc8473c  ii-1.4-usernames.diff"
