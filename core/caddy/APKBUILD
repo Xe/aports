@@ -1,0 +1,39 @@
+# Contributor:
+# Maintainer:
+pkgname=caddy
+pkgver=0.10.3
+pkgrel=0
+pkgdesc="A simple web server that uses Let's Encrypt"
+url="https://caddyserver.com"
+arch="all"
+license="apache2"
+depends=""
+makedepends=""
+install="$pkgname.pre-install $pkgname.post-install"
+subpackages=""
+source="
+	https://xena.greedo.xeserv.us/files/caddy-0.10.3.tgz
+	caddy.initd
+	caddy.confd
+	"
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+}
+
+package() {
+	cd "$builddir"
+
+	install -m755 -D "$srcdir"/"$pkgname" \
+		"$pkgdir"/usr/bin/"$pkgname"
+
+	install -m755 -D "$srcdir"/$pkgname.initd \
+		"$pkgdir"/etc/init.d/$pkgname
+	install -m644 -D "$srcdir"/$pkgname.confd \
+		"$pkgdir"/etc/conf.d/$pkgname
+}
+
+sha512sums="ed0e9606f8b4cc5d855d6f0200f1d155093555a7c8d9c158fa297bb735610e4424852ae75269228559f10ec60d622ec75406e805b1f6fa88a3d68b3f584a3815  caddy-0.10.3.tgz
+0f33e9f9478b41d0125a737fdb3ed33b7e18ae3b5078d8d471c8c8e26c0173c584e1f9723eca7cd697d43f56c81ac77c8579cd2895de05a663133a19456afe53  caddy.initd
+7808688e92ab9950403a9b8ad29777f5bd0f75aa8cccc1d49958bb1e5af1b972dfba0c6d31931354f702a3a13933d0a1b8f28b82eed263773d71b79ec95cc15c  caddy.confd"
