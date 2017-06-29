@@ -2,7 +2,7 @@
 # Maintainer: ""
 pkgname=ghstat
 pkgver=0.0.1
-pkgrel=0
+pkgrel=1
 pkgdesc="Github status getter"
 url="https://github.com/Xe/tools"
 arch="all"
@@ -18,8 +18,8 @@ build() {
 	cd "$builddir"
 
 	export GOPATH="$builddir"
-	go get github.com/Xe/tools/ghstat
-	go build github.com/Xe/tools/ghstat
+	go get github.com/Xe/x/tools/ghstat
+	go build github.com/Xe/x/tools/ghstat
 }
 
 package() {
