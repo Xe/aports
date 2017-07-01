@@ -2,7 +2,7 @@
 # Maintainer:
 pkgname=caddy
 pkgver=0.10.3
-pkgrel=0
+pkgrel=1
 pkgdesc="A simple web server that uses Let's Encrypt"
 url="https://caddyserver.com"
 arch="all"

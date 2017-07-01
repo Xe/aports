@@ -3,7 +3,7 @@
 # Sample init.d file for alpine linux.
 
 name="Caddy webserver"
-command="/usr/sbin/$name"
+command="/usr/bin/caddy"
 command_args="$CADDY_OPTS"
 pidfile="/var/run/caddy.pid"
 command_background="yes"
