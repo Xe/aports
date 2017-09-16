@@ -2,7 +2,7 @@
 # Maintainer: ""
 pkgname=license
 pkgver=0.0.1
-pkgrel=0
+pkgrel=2
 pkgdesc="Simple LICENSE file generator"
 url="https://github.com/Xe/tools"
 arch="all"
@@ -18,8 +18,8 @@ build() {
 	cd "$builddir"
 
 	export GOPATH="$builddir"
-	go get github.com/Xe/tools/license
-	go build github.com/Xe/tools/license
+	go get github.com/Xe/x/tools/license
+	go build github.com/Xe/x/tools/license
 }
 
 package() {
