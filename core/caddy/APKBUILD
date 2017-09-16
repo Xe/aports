@@ -2,20 +2,22 @@
 # Maintainer:
 pkgname=caddy
 pkgver=0.10.9
-pkgrel=3
+pkgrel=6
 pkgdesc="Fast, cross-platform HTTP/2 web server with automatic HTTPS"
 url="https://caddyserver.com"
 arch="all"
 license="Apache-2.0"
-depends="ca-certificates"
+depends="ca-certificates gosu"
 makedepends="go bash git"
 install="$pkgname.pre-install"
 pkgusers="$pkgname"
 pkggroups="$pkgname"
+subpackages="$pkgname-runit:runit"
 
 githash=545fa844bbd188c1e5bff6926e5c410e695571a0
 
 source="
+  run
 	plugins.go
 	$pkgname-$githash.tar.gz::https://codeload.github.com/mholt/caddy/tar.gz/$githash
 	caddy.initd
@@ -28,46 +30,57 @@ prepare() {
         mkdir -p ${builddir%/*}
         export GOPATH="$srcdir"
         mv "$srcdir"/$pkgname-$githash "$builddir"/
-	cp "$srcdir"/plugins.go "$builddir"/caddy/caddymain/plugins.go
-	mkdir -p $srcdir/src/niichan.int/plugins
-	cp "$srcdir"/plugins.go "$srcdir"/src/niichan.int/plugins
+        cp "$srcdir"/plugins.go "$builddir"/caddy/caddymain/plugins.go
+        mkdir -p $srcdir/src/niichan.int/plugins
+        cp "$srcdir"/plugins.go "$srcdir"/src/niichan.int/plugins
         cd "$builddir"
         default_prepare
 }
 
 build() {
-  cd "$builddir"/caddy
-  go get -v niichan.int/plugins/...
-  go build -v -o caddy 
+        cd "$builddir"/caddy
+        go get -v niichan.int/plugins/...
+        go build -v -o caddy 
 }
 
 check() {
-	"$builddir"/caddy/caddy -version > /dev/null
+        "$builddir"/caddy/caddy -version > /dev/null
 }
 
 package() {
-	cd "$builddir"
+          cd "$builddir"
 
-	install -Dm755 caddy/caddy "$pkgdir"/usr/sbin/caddy
+          install -Dm755 caddy/caddy "$pkgdir"/usr/sbin/caddy
 
-	# caddy currently does not support dropping privileges so we
-	# change attributes with setcat to allow access to priv ports
-	# https://caddyserver.com/docs/faq
-	setcap cap_net_bind_service=+ep \
-		"$pkgdir"/usr/sbin/caddy
+	        # caddy currently does not support dropping privileges so we
+	        # change attributes with setcat to allow access to priv ports
+	        # https://caddyserver.com/docs/faq
+	        setcap cap_net_bind_service=+ep \
+		             "$pkgdir"/usr/sbin/caddy
 
-	install -d -o caddy -g caddy \
-		"$pkgdir"/var/lib/caddy \
-		"$pkgdir"/etc/caddy \
-		"$pkgdir"/var/www
+         	install -d -o caddy -g caddy \
+		              "$pkgdir"/var/lib/caddy \
+		              "$pkgdir"/etc/caddy \
+		              "$pkgdir"/var/www
 
-	install -Dm755 "$srcdir"/$pkgname.initd \
-		"$pkgdir"/etc/init.d/$pkgname
-	install -Dm644 "$srcdir"/$pkgname.confd \
-		"$pkgdir"/etc/conf.d/$pkgname
+	        install -Dm755 "$srcdir"/$pkgname.initd \
+		              "$pkgdir"/etc/init.d/$pkgname
+	        install -Dm644 "$srcdir"/$pkgname.confd \
+		              "$pkgdir"/etc/conf.d/$pkgname
 }
 
-sha512sums="f70748bbc67984067fa112449713fca5d4571b6994aed666cc30aae090baba1d3fca8356b9176b41eb04b0bcbc56df24699bcac887cc2cc962aa3d893d1ee49c  plugins.go
+runit() {
+        cd "$_builddir"
+        pkgdesc="$pkgname runit bindings"
+        depends="$pkgname runit"
+        source="run"
+        arch="noarch"
+
+        install -D -m 755 "$srcdir"/run "$subpkgdir"/etc/service/$pkgname/run
+}
+
+sha512sums="4f9743b6698b2dcdd7438bd00892d3bd148bd4519510e4183ce44c1356e1631927602db4018640d62d45a41fc6737b9740479c4fc4fe1ce2377c13298aedb0ed  run
+f70748bbc67984067fa112449713fca5d4571b6994aed666cc30aae090baba1d3fca8356b9176b41eb04b0bcbc56df24699bcac887cc2cc962aa3d893d1ee49c  plugins.go
 9a4af75ed750cb0be5dae7ff6a5f88c2fd0c92c0acbebe89b61c490a12828b78c5ae73a4fc5934770e9395c0cda0a10472af9802e8e09219f3690526642f4eff  caddy-545fa844bbd188c1e5bff6926e5c410e695571a0.tar.gz
 79a4119bbf873a1965d779a28813850dbeecf6847f0119e3027fd82508c75d743243c7c9584726a5e8bb997f55ab5340699f3bdc0d8cc964cae691e0d0903587  caddy.initd
 54a725606ae2087f53f4d18a1eda739bc8c38d05158bb7748ae7b747b06283ad84bc5607eb6b7a1e80cdf6a0f72e5b3765b307158d885dda0f003c4a55a4bc59  caddy.confd"

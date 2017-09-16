@@ -1,0 +1,6 @@
+#!/bin/sh
+
+source /etc/conf.d/caddy
+
+cd /var/lib/caddy
+gosu caddy:caddy /usr/sbin/caddy -agree -email $caddy_email -conf $caddyfile
