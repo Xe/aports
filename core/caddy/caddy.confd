@@ -1,2 +1,8 @@
-# caddy options file
-CADDY_OPTS="-conf /etc/caddy/caddy.conf -agree"
+# Sample conf.d file for alpine linux
+
+#
+# Specify daemon options here.
+#
+
+caddy_email="" # must be added
+caddyfile=/etc/caddy/Caddyfile
