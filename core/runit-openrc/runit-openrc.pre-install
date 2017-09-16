@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mkdir -p /etc/service
+mkdir -p /var/log/runit

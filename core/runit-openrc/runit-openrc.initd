@@ -1,9 +1,9 @@
 #!/sbin/openrc-run
 
 name=runit
-command="/sbin/$name"
+command="/sbin/runsvdir"
 command_args="/etc/service"
-command_background="no"
+command_background="yes"
 
 pidfile="/run/$name.pid"
 

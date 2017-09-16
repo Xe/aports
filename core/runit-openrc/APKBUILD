@@ -2,7 +2,7 @@
 # Maintainer: Christine Dodrill <me@christine.website>
 pkgname=runit-openrc
 pkgver=1.0
-pkgrel=0
+pkgrel=4
 pkgdesc="OpenRC scripts to start runit at /etc/service"
 url="https://christine.website"
 arch="noarch"
@@ -10,6 +10,7 @@ license="public domain"
 depends=""
 makedepends=""
 options="!check"
+install="$pkgname.pre-install"
 source="
 	runit-openrc.initd
 	"
@@ -22,8 +23,8 @@ build() {
 package() {
 	cd "$builddir"
 
-	install -m755 -D "$srcdir"/$pkgname.initd \
-		"$pkgdir"/etc/init.d/$pkgname
+	install -m755 -D "$srcdir"/runit-openrc.initd \
+		"$pkgdir"/etc/init.d/runit-openrc
 }
 
-sha512sums="f067ee09d00783b392b34e6ad1a032b1f02c4b653435e1ab226b1feff022e36fcaadb201ca950a95b6f56c57ee6d1a7a98b156a4b34a86887065b218912f0b7f  runit-openrc.initd"
+sha512sums="30ec0d54341d2f485f3fd53b23b4e6b3048476846e5aa436d5ff4f67860f2d6a6a1ec570ec093f428be7324d5e93baf0138e7e7a4c40fa09d9bc7a051a90d2eb  runit-openrc.initd"
