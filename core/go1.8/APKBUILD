@@ -18,8 +18,8 @@ build() {
 	cd "$builddir"
 
 	export GOPATH="$builddir"
-	go get github.com/Xe/tools/gover/go1.8
-	go build github.com/Xe/tools/gover/go1.8
+	go get github.com/Xe/x/version/go1.8
+	go build github.com/Xe/x/version/go1.8
 }
 
 package() {
