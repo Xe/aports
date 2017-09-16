@@ -2,7 +2,7 @@
 # Maintainer: ""
 pkgname=quickserv
 pkgver=0.0.1
-pkgrel=0
+pkgrel=1
 pkgdesc="Simple HTTP server for one-off directory sharing"
 url="https://github.com/Xe/tools"
 arch="all"
@@ -18,8 +18,8 @@ build() {
 	cd "$builddir"
 
 	export GOPATH="$builddir"
-	go get github.com/Xe/tools/quickserv
-	go build github.com/Xe/tools/quickserv
+	go get github.com/Xe/x/tools/quickserv
+	go build github.com/Xe/x/tools/quickserv
 }
 
 package() {
