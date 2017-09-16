@@ -2,7 +2,7 @@
 # Maintainer: ""
 pkgname=backplane
 pkgver=1.4.7
-pkgrel=1
+pkgrel=2
 pkgdesc="HTTP routing mesh agent"
 url="https://www.backplane.io"
 arch="x86_64"
