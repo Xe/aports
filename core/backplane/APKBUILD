@@ -1,8 +1,8 @@
 # Contributor: Christine Dodrill <me@christine.website>
 # Maintainer: ""
 pkgname=backplane
-pkgver=1.4.2
-pkgrel=3
+pkgver=1.4.7
+pkgrel=1
 pkgdesc="HTTP routing mesh agent"
 url="https://www.backplane.io"
 arch="x86_64"
@@ -10,6 +10,7 @@ license="MIT"
 depends=""
 makedepends=""
 install=""
+options="!check"
 subpackages="$pkgname-runit:runit"
 source="run https://bin.equinox.io/c/jWahGASjoRq/backplane-stable-linux-amd64.tgz"
 builddir="$srcdir/"
@@ -28,9 +29,10 @@ runit() {
 	pkgdesc="$pkgname runit bindings"
 	depends="$pkgname runit"
 	source="run"
+  arch="noarch"
 
 	install -D -m 755 "$srcdir"/run "$subpkgdir"/etc/system/$pkgname/run 
 }
 
 sha512sums="5c96982abae3b44a32b86bfd47f3e6e3905c01cf47ce07528ea2a8192f61e969f066a2da7ce3cd54927f996cc56650d7970ea644734c57da56284af5f875f3fa  run
-e9d0f2e34f08a9bd29e8b7b41a6df6125d5664fe73f8db6ad62a8bcea15af1c181a9c1fb6481f5109c14568702770f81ec365cca1c705cc9492ae6cdf0d70e2b  backplane-stable-linux-amd64.tgz"
+b1b3cbf77499448dd3da318f12eaaa60ac16d9976c924c650b8d3ea6ccaf7e4bf40318d5a267144ee5de6de2867d15185570c60326d9292e297d012a0448b0ad  backplane-stable-linux-amd64.tgz"
