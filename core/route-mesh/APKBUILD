@@ -1,7 +1,7 @@
 # Contributor: Christine Dodrill <me@christine.website>
 # Maintainer: Christine Dodrill <me@christine.website>
 pkgname=route-mesh
-pkgver=0.2.0
+pkgver=0.3.0
 pkgrel=0
 pkgdesc="HTTP routing mesh"
 url="https://info.route.xeserv.us"
@@ -14,7 +14,7 @@ subpackages="$pkgname-runit:runit $pkgname-server:routed $pkgname-agent:agent"
 source="
         run
 
-        https://xena.greedo.xeserv.us/pkg/bin/route-v0.2-linux.tar.gz
+        https://xena.greedo.xeserv.us/pkg/bin/route-v0.3-linux.tar.gz
        "
 builddir="$srcdir/"
 _builddir="$srcdir/"
@@ -52,4 +52,4 @@ runit() {
 }
 
 sha512sums="fabce2527312bd679e45cd23029b750d26d33adc32a9635b262d443f4ac5bcec40c3694efdba1c70fc1d38e1dc7001cb4ab3c2f39c73adfde0fe53ca20320fda  run
-b27ce21e573617bc587044f06483e8550ba725e52ae3e2d1d5ccbc32fa4600299d5dad3838710693bbe0c7bad0a24ecbf5886db06039160a39ef25ce77633f76  route-v0.2-linux.tar.gz"
+97829b1ee3967b9caa32f135cf0f48f7d112dc7e6318c8eae43092c1de79824bd89be3a6988ff8cb5c7a29f52410b482deb5622001959949a22c137d1f2e7535  route-v0.3-linux.tar.gz"
