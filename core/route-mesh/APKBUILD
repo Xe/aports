@@ -2,7 +2,7 @@
 # Maintainer: Christine Dodrill <me@christine.website>
 pkgname=route-mesh
 pkgver=0.3.0
-pkgrel=0
+pkgrel=1
 pkgdesc="HTTP routing mesh"
 url="https://info.route.xeserv.us"
 arch="x86_64"
@@ -33,6 +33,7 @@ routed() {
 	depends=""               
 
 	install -D -m 755 "$srcdir"/routed "$subpkgdir"/usr/bin/routed
+	setcap cap_net_bind_service=+ep "$subpkgdir"/usr/bin/routed
 }
 
 agent() {
