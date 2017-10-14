@@ -3,7 +3,7 @@
 name=caddy
 command="/usr/sbin/$name"
 command_args="-agree -email $caddy_email -conf $caddyfile"
-command_background="yes"
+command_background="no"
 
 start_stop_daemon_args="--user caddy:caddy"
 pidfile="/run/$name.pid"
