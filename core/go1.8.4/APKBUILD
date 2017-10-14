@@ -1,0 +1,30 @@
+# Contributor:
+# Maintainer:
+pkgname=go1.8.4
+pkgver=0
+pkgrel=0
+pkgdesc="Go 1.8.4 wrapper binary"
+url="https://golang.org"
+arch="all"
+license="BSD"
+depends="libc6-compat"
+makedepends="go"
+install=""
+subpackages=""
+source=""
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+
+	export GOPATH="$builddir"
+	go get github.com/Xe/x/version/go1.8.4
+	go build github.com/Xe/x/version/go1.8.4
+}
+
+package() {
+	cd "$builddir"
+
+	install -D -m 755 "$builddir"/$pkgname "$pkgdir"/usr/bin/$pkgname
+}
+
