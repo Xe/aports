@@ -2,7 +2,7 @@
 # Maintainer: ""
 pkgname=glue
 pkgver=0.0.1
-pkgrel=0
+pkgrel=1
 pkgdesc="Glue things together with Lua"
 url="https://github.com/Xe/tools"
 arch="all"
@@ -18,8 +18,8 @@ build() {
 	cd "$builddir"
 
 	export GOPATH="$builddir"
-	go get github.com/Xe/tools/glue/...
-	go build github.com/Xe/tools/glue
+	go get github.com/Xe/x/tools/glue/...
+	go build github.com/Xe/x/tools/glue
 }
 
 package() {
