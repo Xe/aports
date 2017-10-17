@@ -1,0 +1,26 @@
+# Contributor:
+# Maintainer:
+pkgname=gopath
+pkgver=1.0
+pkgrel=0
+pkgdesc="shared GOPATH for system level dependencies"
+url="https://github.com/Xe/aports"
+arch="noarch"
+license="cc0"
+depends="go"
+makedepends=""
+install=""
+source="README"
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+}
+
+package() {
+	cd "$builddir"
+	mkdir -p "$pkgdir"/usr/share/gopath
+	cp -vrf "$srcdir"/README "$pkgdir"/usr/share/gopath/README
+}
+
+sha512sums="5826b5a1d2cf0479e24328ceb4e7e152ec2de052690d065d059ef3670526fea027d54d47ee6c51d514db32b1cd581d2f2c83aa2311ef0542065f51ede3be786b  README"
