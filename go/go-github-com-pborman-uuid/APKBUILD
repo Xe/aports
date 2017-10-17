@@ -1,0 +1,38 @@
+
+# Contributor: Christine Dodrill <me@christine.website>
+# Maintainer: Christine Dodrill <me@christine.website>
+_gopkg=github.com/pborman/uuid
+_goimport=uuid
+
+pkgname=go-github-com-pborman-uuid
+pkgver=1.1
+pkgrel=0
+pkgdesc="The uuid package generates and inspects UUIDs based on RFC 4122 and DCE 1.1: Authentication and Security Services."
+url="https://github.com/pborman/uuid"
+arch="noarch"
+license="mit"
+depends="go gopath "
+makedepends=""
+install=""
+source="$_goimport-$pkgver.tar.gz::https://github.com/pborman/uuid/archive/v1.1.tar.gz"
+builddir="$srcdir/"
+
+build() {
+        cd "$builddir"
+}
+
+package() {
+        cd "$builddir"
+        mkdir -p "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+        cp -rf "$_goimport"-"$pkgver"/* "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+}
+
+check() {
+        cd "$builddir"
+        export GOPATH="$builddir"
+
+        mkdir -p src/"$_gopkg"
+        cp -rf $_goimport-"$pkgver"/* src/"$_gopkg"
+        go test -v "$_gopkg"/...
+}
+sha512sums="f6c0e0182ee4020da31f940436a5bda367d91b9db7240e63b4606ea0d857ac369688fabe5016c13629161e82701b9cf26469fdd227bd3be3fd3861c2149753a8  uuid-1.1.tar.gz"
