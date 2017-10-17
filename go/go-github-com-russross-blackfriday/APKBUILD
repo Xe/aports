@@ -6,12 +6,12 @@ _goimport=blackfriday
 
 pkgname=go-github-com-russross-blackfriday
 pkgver=2.0.0
-pkgrel=0
+pkgrel=1
 pkgdesc="a markdown processor for Go"
 url="https://github.com/russross/blackfriday"
 arch="noarch"
 license="bsd-2"
-depends="go gopath "
+depends="go gopath go-github-com-shurcool-sanitized_anchor_name"
 makedepends="go-github-com-shurcool-sanitized_anchor_name"
 install=""
 source="$_goimport-$pkgver.tar.gz::https://github.com/russross/blackfriday/archive/v2.0.0.tar.gz"
