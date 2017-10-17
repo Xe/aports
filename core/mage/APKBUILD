@@ -1,17 +1,17 @@
 # Contributor: Christine Dodrill <me@christine.website>
 # Maintainer: Christine Dodrill <me@christine.website>
 pkgname=mage
-pkgver=1.0
+pkgver=1.0.2
 pkgrel=0
 pkgdesc="make/rake like utility for Go"
 url="https://magefile.org/"
-arch="all"
+arch="x86_64"
 license="apache-2"
 depends="go"
 makedepends=""
 install=""
 source="
-	mage::https://github.com/magefile/mage/releases/download/v1/mage_linux_amd64
+	mage.tar.gz::https://github.com/magefile/mage/releases/download/v1.0.2/mage_1.0.2_Linux-64bit.tar.gz
 "
 builddir="$srcdir/"
 
@@ -24,4 +24,4 @@ package() {
 	install -D -m 755 "$srcdir"/$pkgname "$pkgdir"/usr/bin/$pkgname
 }
 
-sha512sums="7a5c6cc52ef88e29c0a54b95634b9e288984edfb9c20935ba9fdbb7948ba023d2b6ecba0281bb78f66f0f5aa3f5fefcb60a9e7593454e475e3dba628fd8346ed  mage"
+sha512sums="05472f00b9d74383b907423d96c595ccf36ec2e6da27b7c845a63fd3c5cc6ee206ba7ab02f3defa59e150b98ea42d67b10b38f0b1231df28966c3db27c62d8fc  mage.tar.gz"
