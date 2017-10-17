@@ -1,0 +1,27 @@
+# Contributor:
+# Maintainer:
+pkgname=newapkbuild-gopkg
+pkgver=1.0
+pkgrel=0
+pkgdesc="a simple command line tool to generate APKGUILD files for Go packages in the go repo"
+url="https://github.com/Xe/aports"
+arch="all"
+license="cc0"
+depends=""
+makedepends="go"
+install=""
+source="main.go"
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+	go build -o "$pkgname" main.go
+}
+
+package() {
+	cd "$builddir"
+
+	install -D -m 755 "$pkgname" "$pkgdir"/usr/bin/"$pkgname"
+}
+
+sha512sums="e34217c97f8f88af99e460f90883387728df429872bbe264e8dcd30f6c8bfe37ef34bb64b2435fcb46623f5c56a2ceccbf87b0c0af3d4594c26ee65b8922d9dd  main.go"
