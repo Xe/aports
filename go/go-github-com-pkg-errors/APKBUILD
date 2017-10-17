@@ -2,12 +2,12 @@
 # Maintainer:
 pkgname=go-github-com-pkg-errors
 pkgver=0.8.0
-pkgrel=1
+pkgrel=2
 pkgdesc="simple error handling primitives"
 url="https://github.com/pkg/errors"
 arch="noarch"
 license="bsd-2"
-depends="go"
+depends="go gopath"
 makedepends=""
 install=""
 source="errors-0.8.0.tar.gz::https://github.com/pkg/errors/archive/v0.8.0.tar.gz"
