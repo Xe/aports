@@ -1,5 +1,8 @@
 # Contributor:
 # Maintainer:
+_gopkg=github.com/pkg/errors
+_goimport=errors
+
 pkgname=go-github-com-pkg-errors
 pkgver=0.8.0
 pkgrel=2
@@ -10,7 +13,7 @@ license="bsd-2"
 depends="go gopath"
 makedepends=""
 install=""
-source="errors-0.8.0.tar.gz::https://github.com/pkg/errors/archive/v0.8.0.tar.gz"
+source="$_goimport-$pkgver.tar.gz::https://github.com/pkg/errors/archive/v$pkgver.tar.gz"
 builddir="$srcdir/"
 
 build() {
@@ -19,17 +22,17 @@ build() {
 
 package() {
 	cd "$builddir"
-	mkdir -p "$pkgdir"/usr/share/gopath/src/github.com/pkg/errors
-	cp -rf errors-0.8.0/* "$pkgdir"/usr/share/gopath/src/github.com/pkg/errors
+	mkdir -p "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+	cp -rf "$_goimport"-"$pkgver"/* "$pkgdir"/usr/share/gopath/src/"$_gopkg"
 }
 
 check() {
 	cd "$builddir"
 	export GOPATH="$builddir"
 
-	mkdir -p src/github.com/pkg/errors
-	cp -rf errors-0.8.0/* src/github.com/pkg/errors
-	go test github.com/pkg/errors
+	mkdir -p src/"$_gopkg"
+	cp -rf $_goimport-"$pkgver"/* src/"$_gopkg"
+	go test -v "$_gopkg"/...
 }
 
 sha512sums="82055b10c02f13a8ce497388729568ddde7ae61e9fb2592b9acb11c61dfe94d5554432aee168e7c7adbd8345511c3e4ce0ba4c1b23cf253480e199a95316c443  errors-0.8.0.tar.gz"
