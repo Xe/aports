@@ -17,7 +17,7 @@ func Push() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	shouldWork(ctx, nil, wd, "rsync", "-avz","/home/xena/packages/core/x86_64/", "greedo.xeserv.us:public_html/pkg/alpine/edge/core/x86_64")
+	shouldWork(ctx, nil, wd, "rsync", "-avz","/home/xena/packages/", "greedo.xeserv.us:public_html/pkg/alpine/edge/")
 }
 
 var wg sync.WaitGroup
