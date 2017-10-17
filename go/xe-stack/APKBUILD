@@ -1,0 +1,24 @@
+# Contributor:
+# Maintainer:
+pkgname=xe-stack
+pkgver=1.0
+pkgrel=0
+pkgdesc="virtual that depends on everything i think is a sensible web stack"
+url="https://github.com/Xe/aports"
+arch="all"
+license="cc0"
+depends="gopath go-github-com-caarlos0-env go-github-com-jmoiron-sqlx go-github-com-lib-pq go-github-com-pborman-uuid go-github-com-pkg-errors go-github-com-russross-blackfriday go-github-com-xe-ln"
+makedepends=""
+install=""
+source=""
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+}
+
+package() {
+	cd "$builddir"
+	mkdir -p "$pkgdir"
+}
+
