@@ -1,0 +1,38 @@
+
+# Contributor: Christine Dodrill <me@christine.website>
+# Maintainer: Christine Dodrill <me@christine.website>
+_gopkg=github.com/stretchr/testify
+_goimport=testify
+
+pkgname=go-github-com-stretchr-testify
+pkgver=1.1.4
+pkgrel=0
+pkgdesc="A toolkit with common assertions and mocks that plays nicely with the standard library"
+url="https://github.com/stretchr/testify"
+arch="noarch"
+license="mit"
+depends="go gopath "
+makedepends=""
+install=""
+source="$_goimport-$pkgver.tar.gz::https://github.com/stretchr/testify/archive/v1.1.4.tar.gz"
+builddir="$srcdir/"
+
+build() {
+        cd "$builddir"
+}
+
+package() {
+        cd "$builddir"
+        mkdir -p "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+        cp -rf "$_goimport"-"$pkgver"/* "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+}
+
+check() {
+        cd "$builddir"
+        export GOPATH="$builddir"
+
+        mkdir -p src/"$_gopkg"
+        cp -rf $_goimport-"$pkgver"/* src/"$_gopkg"
+        go test -v "$_gopkg"/...
+}
+sha512sums="cf7195490a409c816c60f063ba71fe1f4933dfa66e7ef640b2d3bbec5d32e8387a604d7eddb1240b50168aed4c5cb7c952a0cd59831e4edc54f5db96d792dbfa  testify-1.1.4.tar.gz"
