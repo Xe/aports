@@ -49,17 +49,17 @@ check() {
 `
 
 var (
-	owner = flag.String("owner", "", "maintainer and contributer of this package")
-	goPkg = flag.String("gopkg", "", "the go package")
-	goImport = flag.String("goimport", "", "the short name the package is imported as")
-	version = flag.String("version", "", "the version of the package")
-	desc = flag.String("desc", "", "single sentence about the package")
-	pkgURL = flag.String("url", "", "url for the homepage of the package")
-	pkgArch = flag.String("arch", "noarch", "package architecture")
-	pkgLicense = flag.String("license", "", "package license")
+	owner          = flag.String("owner", "", "maintainer and contributer of this package")
+	goPkg          = flag.String("gopkg", "", "the go package")
+	goImport       = flag.String("goimport", "", "the short name the package is imported as")
+	version        = flag.String("version", "", "the version of the package")
+	desc           = flag.String("desc", "", "single sentence about the package")
+	pkgURL         = flag.String("url", "", "url for the homepage of the package")
+	pkgArch        = flag.String("arch", "noarch", "package architecture")
+	pkgLicense     = flag.String("license", "", "package license")
 	runtimeDepends = flag.String("runtime-deps", "", "space separated list of extra packages to add at runtime")
-	makeDepends = flag.String("make-deps", "", "space separated list of extra packages to add at build time")
-	tarballURL = flag.String("tarball-url", "", "url for the tarball download")
+	makeDepends    = flag.String("make-deps", "", "space separated list of extra packages to add at build time")
+	tarballURL     = flag.String("tarball-url", "", "url for the tarball download")
 )
 
 func validateFlags() {
@@ -86,7 +86,7 @@ func validateFlags() {
 	switch lastFlag {
 	case "":
 		return
-		default:
+	default:
 	}
 
 	log.Fatalf("please set %s", lastFlag)
@@ -103,37 +103,37 @@ func main() {
 		log.Fatal("making package directory", err)
 	}
 
-	fout, err := os.Create("./"+filepath.Join(pkgName, "APKBUILD"))
+	fout, err := os.Create("./" + filepath.Join(pkgName, "APKBUILD"))
 	if err != nil {
 		log.Fatal("creating output file", err)
 	}
 
 	data := struct {
-		Owner string
-		Gopkg string
-		GoImport string
-		GopkgName string
-		Version string
-		Desc string
-		URL string
-		Arch string
-		License string
+		Owner          string
+		Gopkg          string
+		GoImport       string
+		GopkgName      string
+		Version        string
+		Desc           string
+		URL            string
+		Arch           string
+		License        string
 		RuntimeDepends string
-		MakeDepends string
-		TarballURL string
-	} {
-		Owner: *owner,
-		Gopkg: *goPkg,
-		GoImport: *goImport,
-		GopkgName: pkgName,
-		Version: *version,
-		Desc: *desc,
-		URL: *pkgURL,
-		Arch: *pkgArch,
-		License: *pkgLicense,
+		MakeDepends    string
+		TarballURL     string
+	}{
+		Owner:          *owner,
+		Gopkg:          *goPkg,
+		GoImport:       *goImport,
+		GopkgName:      pkgName,
+		Version:        *version,
+		Desc:           *desc,
+		URL:            *pkgURL,
+		Arch:           *pkgArch,
+		License:        *pkgLicense,
 		RuntimeDepends: *runtimeDepends,
-		MakeDepends: *makeDepends,
-		TarballURL: *tarballURL,
+		MakeDepends:    *makeDepends,
+		TarballURL:     *tarballURL,
 	}
 
 	t := template.Must(template.New("APKBUILD").Parse(packageTemplate))

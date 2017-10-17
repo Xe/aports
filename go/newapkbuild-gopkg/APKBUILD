@@ -2,7 +2,7 @@
 # Maintainer:
 pkgname=newapkbuild-gopkg
 pkgver=1.0
-pkgrel=0
+pkgrel=1
 pkgdesc="a simple command line tool to generate APKGUILD files for Go packages in the go repo"
 url="https://github.com/Xe/aports"
 arch="all"
@@ -24,4 +24,4 @@ package() {
 	install -D -m 755 "$pkgname" "$pkgdir"/usr/bin/"$pkgname"
 }
 
-sha512sums="e34217c97f8f88af99e460f90883387728df429872bbe264e8dcd30f6c8bfe37ef34bb64b2435fcb46623f5c56a2ceccbf87b0c0af3d4594c26ee65b8922d9dd  main.go"
+sha512sums="3da40d209e340048ccd66d584dfbb4b21b363c7ab7f132e540dc744a1a6b0ebd1a5854c1e320632f57a24893369f23302520afb54f939df44314131655ca4324  main.go"
