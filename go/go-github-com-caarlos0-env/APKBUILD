@@ -1,0 +1,41 @@
+# Contributor:
+# Maintainer:
+_gopkg=github.com/caarlos0/env
+_goimport=env
+
+pkgname=go-github-com-caarlos0-env
+pkgver=3.0
+pkgrel=0
+pkgdesc="A KISS way to deal with environment variables in Go."
+url="https://github.com/caarlos0/env"
+arch="noarch"
+license="bsd-2"
+depends="go gopath"
+makedepends=""
+install=""
+source="$_goimport-$pkgver.tar.gz::https://github.com/caarlos0/env/archive/v$pkgver.tar.gz"
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+}
+
+package() {
+	cd "$builddir"
+	mkdir -p "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+	cp -rf "$_goimport"-"$pkgver"/* "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+}
+
+check() {
+	cd "$builddir"
+	export GOPATH="$builddir"
+
+	mkdir -p src/"$_gopkg"
+	cp -rf $_goimport-"$pkgver"/* src/"$_gopkg"
+
+	cd src/"$_gopkg"
+	go get github.com/stretchr/testify/assert
+	go test -v "$_gopkg"/...
+}
+
+sha512sums="922c14aa1c271d1bb312641bdb14f30b4f40b4d02eebc3466c6202d23fa2c52c91350e6efb41b151cb8ca7fd33bb4406bf71cc15afb1fed727fb1d964a777f1b  env-3.0.tar.gz"
