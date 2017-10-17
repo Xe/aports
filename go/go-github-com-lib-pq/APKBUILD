@@ -1,0 +1,32 @@
+
+# Contributor: Christine Dodrill <me@christine.website>
+# Maintainer: Christine Dodrill <me@christine.website>
+_gopkg=github.com/lib/pq
+_goimport=pq
+
+_gitcommit=017e4c14d80628353eaee677a1aeffe47a10c0dc
+
+pkgname=go-github-com-lib-pq
+pkgver=1.0
+pkgrel=0
+pkgdesc="Pure Go Postgres driver for database/sql"
+url="https://github.com/lib/pq"
+arch="noarch"
+license="mit"
+depends="go gopath "
+makedepends=""
+install=""
+source="$_goimport-$pkgver.tar.gz::https://github.com/lib/pq/archive/$_gitcommit.tar.gz"
+builddir="$srcdir/"
+
+build() {
+        cd "$builddir"
+}
+
+package() {
+        cd "$builddir"
+        mkdir -p "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+        cp -rf "$_goimport"-"$_gitcommit"/* "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+}
+
+sha512sums="e2e49fb0793633fb8c1f92f7f342df2040d1fb83b7d66cc6564875d4450f90ce6bac3f2f31003369ee72d8467246d58b7e24f443f480c7d13d71b987ec0fada0  pq-1.0.tar.gz"
