@@ -1,0 +1,38 @@
+
+# Contributor: Christine Dodrill <me@christine.website>
+# Maintainer: Christine Dodrill <me@christine.website>
+_gopkg=github.com/go-chi/chi
+_goimport=chi
+
+pkgname=go-github-com-go-chi-chi
+pkgver=3.3.0
+pkgrel=0
+pkgdesc="lightweight, idiomatic and composable router for building Go HTTP services"
+url="https://github.com/go-chi/chi"
+arch="noarch"
+license="mit"
+depends="go gopath "
+makedepends=""
+install=""
+source="$_goimport-$pkgver.tar.gz::https://github.com/go-chi/chi/archive/v3.3.0.tar.gz"
+builddir="$srcdir/"
+
+build() {
+        cd "$builddir"
+}
+
+package() {
+        cd "$builddir"
+        mkdir -p "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+        cp -rf "$_goimport"-"$pkgver"/* "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+}
+
+check() {
+        cd "$builddir"
+        export GOPATH="$builddir"
+
+        mkdir -p src/"$_gopkg"
+        cp -rf $_goimport-"$pkgver"/* src/"$_gopkg"
+        go test -v "$_gopkg"
+}
+sha512sums="89c0b6d4f7c194aa360194c6f49a7d461748955c680cf243051b28833fdd8408e1a7fa6a8bba9ca8d41d939a68f4b46909b40a81325da6e0c86b26dc05f0aadc  chi-3.3.0.tar.gz"
