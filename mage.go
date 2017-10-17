@@ -20,33 +20,49 @@ func Push() {
 	shouldWork(ctx, nil, wd, "rsync", "-avz","/home/xena/packages/core/x86_64/", "greedo.xeserv.us:public_html/pkg/alpine/edge/core/x86_64")
 }
 
+var wg sync.WaitGroup
+
 func BuildAll() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	coreDir := filepath.Join(wd, "./core")
+	goDir := filepath.Join(wd, "./go")
 
-	var wg sync.WaitGroup
+	coreFin, err := os.Open(coreDir)
+	qod.ANE(err)
+	defer coreFin.Close()
 
-	fin, err := os.Open(coreDir)
+	coreFis, err := coreFin.Readdir(999)
 	qod.ANE(err)
 
-	fis, err := fin.Readdir(999)
+	for _, fi := range coreFis {
+		go buildPackage(ctx, fi, coreDir)
+	}
+
+	goFin, err := os.Open(goDir)
+	qod.ANE(err)
+	defer goFin.Close()
+
+	goFis, err := goFin.Readdir(999)
 	qod.ANE(err)
 
-	for _, fi := range fis {
-		go func(fi os.FileInfo) {
-			packDir := filepath.Join(coreDir, filepath.Base(fi.Name()))
-
-			wg.Add(1)
-			defer wg.Done()
-
-			shouldWork(ctx, nil, packDir, "abuild", "checksum")
-			shouldWork(ctx, nil, packDir, "abuild", "-r")
-		} (fi)
+	for _, fi := range goFis {
+		go buildPackage(ctx, fi, goDir)
 	}
 
 	time.Sleep(time.Second)
 
 	wg.Wait()
+}
+
+
+func buildPackage(ctx context.Context, fi os.FileInfo, parentDir string) {
+	packDir := filepath.Join(parentDir, filepath.Base(fi.Name()))
+
+	wg.Add(1)
+	defer wg.Done()
+
+	shouldWork(ctx, nil, packDir, "abuild", "checksum")
+	shouldWork(ctx, nil, packDir, "abuild", "-r")
 }
