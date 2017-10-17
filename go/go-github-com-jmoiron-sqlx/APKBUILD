@@ -1,0 +1,40 @@
+
+# Contributor: Christine Dodrill <me@christine.website>
+# Maintainer: Christine Dodrill <me@christine.website>
+_gopkg=github.com/jmoiron/sqlx
+_goimport=sqlx
+_commit=d9bd385d68c068f1fabb5057e3dedcbcbb039d0f
+
+pkgname=go-github-com-jmoiron-sqlx
+pkgver=1.1
+pkgrel=0
+pkgdesc="general purpose extensions to golang's database/sql"
+url="https://github.com/jmoiron/sqlx"
+arch="noarch"
+license="mit"
+depends="go gopath "
+makedepends=""
+install=""
+source="$_goimport-$pkgver.tar.gz::https://github.com/jmoiron/sqlx/archive/$_commit.tar.gz"
+builddir="$srcdir/"
+options="!check"
+
+build() {
+        cd "$builddir"
+}
+
+package() {
+        cd "$builddir"
+        mkdir -p "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+        cp -rf "$_goimport"-"$_commit"/* "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+}
+
+check() {
+        cd "$builddir"
+        export GOPATH="$builddir"
+
+        mkdir -p src/"$_gopkg"
+        cp -rf $_goimport-"$_commit"/* src/"$_gopkg"
+        go test -v "$_gopkg"/...
+}
+sha512sums="0e5a3581f1ceb07e669a9a9aab2f130f23b9ffa7c16440b950b3da9db1d3367d1105fd93efa22c8198309ceab89e964e8aa0b84ff3b8d9494d4bf0f6ae0bb0ae  sqlx-1.1.tar.gz"
