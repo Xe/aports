@@ -1,8 +1,8 @@
 # Contributor:
 # Maintainer:
 pkgname=newapkbuild-gopkg
-pkgver=1.0
-pkgrel=1
+pkgver=1.1
+pkgrel=0
 pkgdesc="a simple command line tool to generate APKGUILD files for Go packages in the go repo"
 url="https://github.com/Xe/aports"
 arch="all"

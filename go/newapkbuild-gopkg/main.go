@@ -40,7 +40,7 @@ package() {
 
 check() {
         cd "$builddir"
-        export GOPATH="$builddir"
+        export GOPATH=/usr/share/gopath:"$builddir"
 
         mkdir -p src/"$_gopkg"
         cp -rf $_goimport-"$pkgver"/* src/"$_gopkg"
