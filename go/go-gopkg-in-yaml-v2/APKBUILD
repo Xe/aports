@@ -1,0 +1,38 @@
+# Contributor: Christine Dodrill <me@christine.website>
+# Maintainer: Christine Dodrill <me@christine.website>
+_gopkg=gopkg.in/yaml.v2
+_goimport=yaml
+_commit=eb3733d160e74a9c7e442f435eb3bea458e1d19f
+
+pkgname=go-gopkg-in-yaml-v2
+pkgver=2.0
+pkgrel=0
+pkgdesc="YAML support for the Go language."
+url="https://github.com/go-yaml/yaml"
+arch="noarch"
+license="aache-2"
+depends="go gopath go-gopkg-in-check-v1"
+makedepends="go-gopkg-in-check-v1"
+install=""
+source="$_goimport-$_commit.tar.gz::https://github.com/go-yaml/yaml/archive/$_commit.tar.gz"
+builddir="$srcdir/"
+
+build() {
+        cd "$builddir"
+}
+
+package() {
+        cd "$builddir"
+        mkdir -p "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+        cp -rf "$_goimport"-"$_commit"/* "$pkgdir"/usr/share/gopath/src/"$_gopkg"
+}
+
+check() {
+        cd "$builddir"
+        export GOPATH=/usr/share/gopath:"$builddir"
+
+        mkdir -p src/"$_gopkg"
+        cp -rf $_goimport-"$_commit"/* src/"$_gopkg"
+        go test -v "$_gopkg"/...
+}
+sha512sums="9e34c34c907d1177e072eb5f3b421b8a3af0e68b490508691d745cdcf1145d9bcfd2592d909a4b05e7f12bfb62355d49861f6d2e1bd29b69cf026ef631965289  yaml-eb3733d160e74a9c7e442f435eb3bea458e1d19f.tar.gz"
