@@ -1,7 +1,7 @@
 # Contributor: Christine Dodrill <me@christine.website>
 # Maintainer: Christine Dodrill <me@christine.website>
 pkgname=dep
-pkgver=0.3.1
+pkgver=0.3.2
 pkgrel=0
 pkgdesc="Go dependency management tool"
 url="https://github.com/golang/dep"
@@ -11,7 +11,7 @@ depends="go"
 makedepends=""
 install=""
 source="
-	dep::https://github.com/golang/dep/releases/download/v0.3.1/dep-linux-amd64
+	dep::https://github.com/golang/dep/releases/download/v0.3.2/dep-linux-amd64
 "
 builddir="$srcdir/"
 
