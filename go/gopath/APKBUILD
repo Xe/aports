@@ -2,7 +2,7 @@
 # Maintainer:
 pkgname=gopath
 pkgver=1.0
-pkgrel=0
+pkgrel=1
 pkgdesc="shared GOPATH for system level dependencies"
 url="https://github.com/Xe/aports"
 arch="noarch"
@@ -10,7 +10,7 @@ license="cc0"
 depends="go"
 makedepends=""
 install=""
-source="README"
+source="README gopath.sh"
 builddir="$srcdir/"
 
 build() {
@@ -21,6 +21,9 @@ package() {
 	cd "$builddir"
 	mkdir -p "$pkgdir"/usr/share/gopath
 	cp -vrf "$srcdir"/README "$pkgdir"/usr/share/gopath/README
+	mkdir -p "$pkgdir"/etc/profile.d
+	cp -vrf "$srcdir"/gopath.sh "$pkgdir"/etc/profile.d/gopath.sh
 }
 
-sha512sums="5826b5a1d2cf0479e24328ceb4e7e152ec2de052690d065d059ef3670526fea027d54d47ee6c51d514db32b1cd581d2f2c83aa2311ef0542065f51ede3be786b  README"
+sha512sums="5826b5a1d2cf0479e24328ceb4e7e152ec2de052690d065d059ef3670526fea027d54d47ee6c51d514db32b1cd581d2f2c83aa2311ef0542065f51ede3be786b  README
+5bb1d951d0cb41005bbbfdb2e18f124a0c27e49f85dea875973ea2e3da7f6fc07ec80becae0986f8bc97bf4285c1cf10379395ca49a4310cb597eef46f6364cb  gopath.sh"
