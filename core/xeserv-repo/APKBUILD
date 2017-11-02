@@ -1,0 +1,27 @@
+# Contributor:
+# Maintainer:
+pkgname=xeserv-repo
+pkgver=1.0.0
+pkgrel=0
+pkgdesc="The repository files for xeserv alpine packages"
+url="https://xena.greedo.xeserv.us/pkg/alpine/edge/core/"
+arch="noarch"
+license="cc0"
+depends="xeserv-keys"
+makedepends=""
+install=""
+source="xeserv.list"
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+}
+
+package() {
+	cd "$builddir"
+
+	mkdir -p "$pkgdir"/etc/apk/repositories.d
+	install -m644 "$srcdir"/xeserv.list "$pkgdir"/etc/apk/repositories.d/xeserv.list
+}
+
+sha512sums="3fe613f3530b92ec238c0b2659c7a1b01e65e6b582334cd8b8c3ad274584c5725ac26eb4a3228b630349a063615f304db37448a837be1d96f52c0487c383f3e9  xeserv.list"
