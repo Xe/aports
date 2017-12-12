@@ -2,7 +2,7 @@
 # Maintainer: ""
 pkgname=quickserv
 pkgver=0.0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Simple HTTP server for one-off directory sharing"
 url="https://github.com/Xe/tools"
 arch="all"
@@ -10,8 +10,8 @@ license="MIT"
 depends=""
 makedepends="go"
 install=""
-subpackages=""
-source=""
+subpackages="$pkgname-doc"
+source="quickserv.1"
 builddir="$srcdir/"
 
 build() {
@@ -25,6 +25,8 @@ build() {
 package() {
 	cd "$builddir"
 
-	install -D -m 755 "$builddir"/$pkgname "$pkgdir"/usr/bin/$pkgname
+	install -D -m 755 "$builddir"/"$pkgname" "$pkgdir"/usr/bin/"$pkgname"
+	install -D -m 644 "$builddir"/"$pkgname".1 "$pkgdir"/usr/share/man/man.1/"$pkgname".1
 }
 
+sha512sums="9e7a0cce1121bf680e979278666fd5a1f70b98b39e4c9ac97d67e0fe622b5589ea35a71b5c30e6b8a2ee460c2c844e51a651ed6b4d40c97a95c50ce35648adf7  quickserv.1"
