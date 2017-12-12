@@ -1,0 +1,27 @@
+# Contributor:
+# Maintainer:
+pkgname=xeserv-ca
+pkgver=1.0
+pkgrel=0
+pkgdesc="XeServ certificate authority"
+url="https://xena.greedo.xeserv.us/pkg/alpine/edge/core/"
+arch="all"
+license="cc0"
+depends="ca-certificates"
+makedepends=""
+install=""
+source="xeserv_ca.pem"
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+}
+
+package() {
+	cd "$builddir"
+
+	mkdir -p "$pkgdir"/etc/ssl/certs/
+	install -m644 "$srcdir"/xeserv_ca.pem "$pkgdir"/etc/ssl/certs/xeserv_ca.pem
+}
+
+sha512sums="a10a0e1526d6dc426cb3e24e5f2a4c38fac2fb1bfe19f16562de383273d17767a8c62f3349e3228b5b8e51e7f762ade0d3d3eeac5f6db04b2a080f9fa411f6a3  xeserv_ca.pem"
