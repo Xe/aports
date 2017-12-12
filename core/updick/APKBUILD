@@ -1,0 +1,27 @@
+# Contributor:
+# Maintainer:
+pkgname=updick
+pkgver=1.0
+pkgrel=0
+pkgdesc="uptime penis"
+url="https://xena.greedo.xeserv.us/pkg/alpine/edge/core/"
+arch="all"
+license="cc0"
+depends="perl"
+makedepends=""
+install=""
+source="updick"
+builddir="$srcdir/"
+options="!check"
+
+build() {
+	cd "$builddir"
+}
+
+package() {
+	cd "$builddir"
+
+	install -D -m 755 "$builddir"/$pkgname "$pkgdir"/usr/bin/$pkgname
+}
+
+sha512sums="0ff888c3e78f4f17200e00982a1708aefd3b7f6b3166bbac2f3b0b0dcb2b2e525233a3551e38db8b7270dd96f6c2f4c1f6eb410c1d79474b45fa9c8a82a54e2f  updick"

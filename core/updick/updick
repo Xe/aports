@@ -1,0 +1,3 @@
+#!/bin/sh
+
+uptime | perl -nE '/p (\d+)/;say+8, "="x$1,D'
