@@ -2,7 +2,7 @@
 # Maintainer: ""
 pkgname=quickserv
 pkgver=0.0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Simple HTTP server for one-off directory sharing"
 url="https://github.com/Xe/tools"
 arch="all"
@@ -29,4 +29,4 @@ package() {
 	install -D -m 644 "$builddir"/"$pkgname".1 "$pkgdir"/usr/share/man/man.1/"$pkgname".1
 }
 
-sha512sums="9e7a0cce1121bf680e979278666fd5a1f70b98b39e4c9ac97d67e0fe622b5589ea35a71b5c30e6b8a2ee460c2c844e51a651ed6b4d40c97a95c50ce35648adf7  quickserv.1"
+sha512sums="8e4c00665ddcad6afff5929e13a324df74e877c2a110d3e6a1f32940198a68049217655e4f59f7621be8d43922ada3ee4e78378bcc5777d9202ff009f8a147ba  quickserv.1"
