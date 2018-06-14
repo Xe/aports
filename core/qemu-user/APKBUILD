@@ -1,0 +1,27 @@
+# Contributor:
+# Maintainer:
+pkgname=qemu-user
+pkgver=0
+pkgrel=0
+pkgdesc="all of the qemu-user binaries"
+url="https://github.com/Xe/aports"
+arch="all"
+license="mit"
+depends="qemu-aarch64 qemu-aarch64_be qemu-alpha qemu-arm qemu-armeb qemu-cris qemu-doc qemu-hppa qemu-i386 qemu-img qemu-lang qemu-m68k qemu-microblaze qemu-microblazeel qemu-mips qemu-mips64 qemu-mips64el qemu-mipsel qemu-mipsn32 qemu-mipsn32el qemu-nios2 qemu-or1k qemu-ppc qemu-ppc64 qemu-ppc64abi32 qemu-ppc64le qemu-riscv32 qemu-riscv64 qemu-s390x qemu-sh4 qemu-sh4eb qemu-sparc qemu-sparc32plus qemu-sparc64 qemu-tilegx qemu-x86_64 qemu-xtensa qemu-xtensaeb"
+makedepends=""
+install=""
+subpackages="$pkgname-dev $pkgname-doc"
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+}
+
+check() {
+	cd "$builddir"
+}
+
+package() {
+	cd "$builddir"
+}
+
