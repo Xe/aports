@@ -2,7 +2,7 @@
 # Maintainer:
 pkgname=wapptclsh
 pkgver=0.0.0
-pkgrel=0
+pkgrel=2
 pkgdesc="A framework for writing web applications in TCL"
 url="https://wapp.tcl.tk/index.html/doc/trunk/README.md"
 arch="all"
@@ -10,7 +10,7 @@ license="bsd2"
 depends="tcl"
 makedepends="tcl-dev"
 install=""
-subpackages=""
+subpackages="$pkgname-doc"
 source="
 	https://wapp.tcl.tk/index.html/tarball/wapp.tar.gz
 	Makefile
@@ -28,6 +28,8 @@ package() {
 	cd "$builddir"
 
 	install -D -m 755 "$builddir"/wapp/$pkgname "$pkgdir"/usr/bin/$pkgname
+	mkdir -p "$pkgdir"/usr/share/doc/wapptclsh
+	cp -vrf "$builddir"/wapp/docs/* "$pkgdir"/usr/share/doc/wapptclsh
 }
 
 sha512sums="bf405c2447a6cfcdb92aac4e0e80856bd68f1c066732954b15bf36011d3d7e1236d413009ac017be539594e216ebfb9973221ecdff9e89a3132c8c75fe95432b  wapp.tar.gz
