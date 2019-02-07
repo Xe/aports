@@ -1,13 +1,13 @@
 # Contributor: Christine Dodrill <me@christine.website>
 # Maintainer: Christine Dodrill <me@christine.website>
 pkgname=dep
-pkgver=0.4.1
+pkgver=0.5.0
 pkgrel=0
 pkgdesc="Go dependency management tool"
 url="https://github.com/golang/dep"
 arch="x86_64"
 license="bsd-3"
-depends="go"
+depends="go gcompat libc6-compat"
 makedepends=""
 install=""
 source="

@@ -1,8 +1,0 @@
-#!/bin/sh
-
-if [ -n "$ROUTE_TOKEN" ]
-then
-	/usr/bin/route-httpagent -token "$ROUTE_TOKEN" -domain "$ROUTE_DOMAIN" -backend "$ROUTE_BACKEND" -server "$ROUTE_SERVER" -method "$ROUTE_METHOD"
-else
-	sleep 999d
-fi

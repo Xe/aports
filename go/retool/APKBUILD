@@ -1,7 +1,7 @@
 # Contributor: Christine Dodrill <me@christine.website>
 # Maintainer: Christine Dodrill <me@christine.website>
 pkgname=retool
-pkgver=1.3.5
+pkgver=1.3.7
 pkgrel=0
 pkgdesc="Go retoolendency management tool"
 url="https://github.com/twitchtv/retool"
@@ -11,7 +11,7 @@ retoolends="go"
 makeretoolends=""
 install=""
 source="
-	retool::https://github.com/twitchtv/retool/releases/download/v1.3.5/retool_linux_amd64
+	retool::https://github.com/twitchtv/retool/releases/download/v1.3.7/retool_linux_amd64
 "
 builddir="$srcdir/"
 

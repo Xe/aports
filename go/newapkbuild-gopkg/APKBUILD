@@ -13,6 +13,8 @@ install=""
 source="main.go"
 builddir="$srcdir/"
 
+export GO111MODULE=off
+
 build() {
 	cd "$builddir"
 	go build -o "$pkgname" main.go
@@ -24,4 +26,4 @@ package() {
 	install -D -m 755 "$pkgname" "$pkgdir"/usr/bin/"$pkgname"
 }
 
-sha512sums="3da40d209e340048ccd66d584dfbb4b21b363c7ab7f132e540dc744a1a6b0ebd1a5854c1e320632f57a24893369f23302520afb54f939df44314131655ca4324  main.go"
+sha512sums="09d816074790d3f6ada181f8f1f929515213aab570153648aaf401a8de16d06b918a80d98f7911c49ea7daf5ef1118e9074be9bbaf9ca1cc5f579d7ea7aeb6d0  main.go"
