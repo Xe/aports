@@ -1,3 +1,3 @@
 #!/bin/sh
 
-rsync -avz ~/packages/core/x86_64/ greedo.xeserv.us:public_html/pkg/alpine/edge/core/x86_64
+rsync -avz ~/packages/core/x86_64/ cadey@kahless.cetacean.club:public_html/pkg/alpine/edge/core/x86_64

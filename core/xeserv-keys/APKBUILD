@@ -1,6 +1,6 @@
 # Maintainer: Christine Dodrill <me@christine.website>
 pkgname=xeserv-keys
-pkgver=1.4
+pkgver=1.5.0
 pkgrel=0
 pkgdesc="Public keys for XeServ packages"
 url="https://xena.greedo.xeserv.us/contact.md"
@@ -12,6 +12,7 @@ install=""
 subpackages=""
 source="https://xena.greedo.xeserv.us/pkg/me@christine.website-58b7b0b8.rsa.pub
 	https://xena.greedo.xeserv.us/pkg/me@christine.website-590bc97c.rsa.pub
+	https://xena.greedo.xeserv.us/pkg/me@christine.website-5d1e5615.rsa.pub
 	"
 
 build() {
@@ -26,4 +27,5 @@ package() {
 }
 
 sha512sums="00284b8d8d3a25bf222f44486cb0acc7401149e9cc854aced5fbec2daf042c00aa76410176681b694194f2b05cc59366408ebae7d0480ae989a1b7868378ee41  me@christine.website-58b7b0b8.rsa.pub
-6026a65a5be5aa982e26a1d21fe07e11533afcd905cba945475917b57f58876024a7559965548d54975de06999f820acbec1ac380e1be1eb7c9e59fcb0ac3fef  me@christine.website-590bc97c.rsa.pub"
+6026a65a5be5aa982e26a1d21fe07e11533afcd905cba945475917b57f58876024a7559965548d54975de06999f820acbec1ac380e1be1eb7c9e59fcb0ac3fef  me@christine.website-590bc97c.rsa.pub
+cbf438245ff54a8ae8d9e5bbff6caf9a87af9781a20b273d3e4e5471ba8c7331c70898006f963fcaaa4e1c7d3d7b522c2052226f47f924ad5063776ce3ce1c57  me@christine.website-5d1e5615.rsa.pub"
